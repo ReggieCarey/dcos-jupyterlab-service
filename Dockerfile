@@ -240,6 +240,7 @@ RUN cd /tmp \
     && bash "./${CONDA_INSTALLER}" -u -b -p "${CONDA_DIR}" \
     && ${CONDA_DIR}/bin/conda update --json --all -yq \
     && ${CONDA_DIR}/bin/pip install --upgrade pip \
+    && ${CONDA_DIR}/bin/pip install tfmesos \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::blas \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::conda \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::gsl \
