@@ -21,6 +21,10 @@ server {
     #large_client_header_buffers 8 64k;
     #client_header_buffer_size 64k;
 
+    etag on;
+    client_max_body_size 0;
+
+
     #set_by_lua $session_secret 'return os.getenv("OIDC_SESSION_SECRET")';
     #set_by_lua $session_check_ssi 'return os.getenv("OIDC_SESSION_CHECK_SSI")';
     #set_by_lua $session_name 'return os.getenv("OIDC_SESSION_NAME")';
