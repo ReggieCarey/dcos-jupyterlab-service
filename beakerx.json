@@ -77,7 +77,7 @@
       "show_catalog": true,
       "show_publication": true,
       "use_data_grid": true,
-      "wide_cells": true
+      "wide_cells": false
     },
     "version": 2
   }
