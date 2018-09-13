@@ -240,7 +240,6 @@ RUN cd /tmp \
     && bash "./${CONDA_INSTALLER}" -u -b -p "${CONDA_DIR}" \
     && ${CONDA_DIR}/bin/conda update --json --all -yq \
     && ${CONDA_DIR}/bin/pip install --upgrade pip \
-    && ${CONDA_DIR}/bin/pip install tfmesos \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::blas \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::conda \
     && ${CONDA_DIR}/bin/conda config --env --add pinned_packages defaults::gsl \
@@ -258,11 +257,12 @@ RUN cd /tmp \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/fasta-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/geojson-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/github \
+    && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/git \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/hub-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/latex \
+    && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/mathjax3-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/plotly-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/toc \
-    && ${CONDA_DIR}/bin/jupyter labextension install @jupyterlab/vega2-extension \
     && ${CONDA_DIR}/bin/jupyter labextension install beakerx-jupyterlab@1.0.0 \
     && ${CONDA_DIR}/bin/jupyter labextension install bqplot \
     && ${CONDA_DIR}/bin/jupyter labextension install jupyterlab_bokeh \
@@ -295,6 +295,7 @@ USER root
 
 COPY start-notebook.sh /usr/local/bin/
 COPY start-singleuser.sh /usr/local/bin/
+COPY jupyterhub-singleuser /usr/local/bin/
 
 RUN cp "${MESOSPHERE_PREFIX}/libmesos-bundle/lib/libcurl.so.4" /usr/lib/x86_64-linux-gnu/libcurl.so.4.4.0
 
